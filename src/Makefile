@@ -20,7 +20,7 @@ docs: $(DATA_DOC)
 
 deps:
 	#	Install package dependencies
-	Rscript -e 'if (!require("remotes")) {install.packages("remotes", repos = "${CRAN}")}; remotes::install_deps("..", dependencies = TRUE, upgrade = FALSE)'
+	Rscript -e 'if (!require("remotes")) {install.packages("remotes", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; remotes::install_deps("..", dependencies = TRUE, upgrade = FALSE, INSTALL_opts="--no-staged-install")'
 
 resave:
 	# Try to compress datasets beyond the default
