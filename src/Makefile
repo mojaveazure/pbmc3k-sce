@@ -16,9 +16,9 @@ data: $(DATA_RDA)
 
 docs: $(DATA_DOC)
 
-deps:
+deps: ../tools/install_deps.R
 	#	Install package dependencies
-	Rscript -e 'if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; remotes::install_deps("..", dependencies = TRUE, upgrade = FALSE, INSTALL_opts="--no-staged-install")'
+	Rscript $< $(dir $(<D)) $(CRAN)
 
 resave: $(DATA_RDA)
 	# Try to compress datasets beyond the default
@@ -28,9 +28,9 @@ resave: $(DATA_RDA)
 	#	Build datasets
 	Rscript -e 'source("$<", echo = TRUE)'
 
-$(DATA_DOC)&: $(DATA_RDA)
+$(DATA_DOC)&: ../tools/build_man.R $(DATA_RDA)
 	#	Generate documentation for the datasets (and package)
-	Rscript -e 'if (!requireNamespace("roxygen2", quietly = TRUE)) {install.packages("roxygen2", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; roxygen2::roxygenize("..")'
+	Rscript $< $(dir $(<D)) $(CRAN)
 
 clean:
 	#	Remove data files and associated man pages
