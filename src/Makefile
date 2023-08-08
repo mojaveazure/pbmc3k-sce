@@ -5,8 +5,8 @@ CRAN := http$(_COLON)//cran.rstudio.com
 DATA_RAW_DIR = ../inst/data-raw
 
 DATA_RAW := $(sort $(wildcard ${DATA_RAW_DIR}/*.r ${DATA_RAW_DIR}/*.R))
-DATA_RDA := $(addprefix ../data/,$(addsuffix .rda,$(basename $(notdir ${DATA_RAW}))))
-DATA_DOC := $(addprefix ../man/,$(addsuffix .Rd,$(basename $(notdir ${DATA_RAW}))))
+DATA_RDA := $(addprefix ../data/, $(addsuffix .rda, $(basename $(notdir ${DATA_RAW}))))
+DATA_DOC := $(addprefix ../man/, $(addsuffix .Rd, $(basename $(notdir ${DATA_RAW}))))
 
 .PHONY: all clean data deps docs resave
 
@@ -26,7 +26,7 @@ resave:
 	# Try to compress datasets beyond the default
 	Rscript -e 'if (requireNamespace("tools", quietly = TRUE)) tools::resaveRdaFiles(paths = "data")'
 
-../data/%.rda: ../data-raw/%.R
+../data/%.rda: $(DATA_RAW_DIR)/%.R
 	#	Build datasets
 	Rscript -e 'source("$<", echo = TRUE)'
 
