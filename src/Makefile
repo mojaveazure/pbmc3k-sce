@@ -1,5 +1,3 @@
-BUILD_FLAGS=
-
 _COLON := :
 CRAN := http$(_COLON)//cran.rstudio.com
 DATA_RAW_DIR = ../inst/data-raw
@@ -22,7 +20,7 @@ deps:
 	#	Install package dependencies
 	Rscript -e 'if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; remotes::install_deps("..", dependencies = TRUE, upgrade = FALSE, INSTALL_opts="--no-staged-install")'
 
-resave:
+resave: $(DATA_RDA)
 	# Try to compress datasets beyond the default
 	Rscript -e 'if (requireNamespace("tools", quietly = TRUE)) tools::resaveRdaFiles(paths = "data")'
 
@@ -32,7 +30,7 @@ resave:
 
 $(DATA_DOC)&: $(DATA_RDA)
 	#	Generate documentation for the datasets (and package)
-	Rscript -e 'if (!requireNamespace("roxygen2", quietly = TRUE)) {install.packages("roxygen2", repos = "${CRAN}")}; roxygen2::roxygenize("..")'
+	Rscript -e 'if (!requireNamespace("roxygen2", quietly = TRUE)) {install.packages("roxygen2", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; roxygen2::roxygenize("..")'
 
 clean:
 	#	Remove data files and associated man pages
