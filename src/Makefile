@@ -2,7 +2,7 @@ BUILD_FLAGS=
 
 _COLON := :
 CRAN := http$(_COLON)//cran.rstudio.com
-DATA_RAW_DIR = ../data-raw
+DATA_RAW_DIR = ../inst/data-raw
 
 DATA_RAW := $(sort $(wildcard ${DATA_RAW_DIR}/*.r ${DATA_RAW_DIR}/*.R))
 DATA_RDA := $(addprefix ../data/,$(addsuffix .rda,$(basename $(notdir ${DATA_RAW}))))
@@ -20,11 +20,11 @@ docs: $(DATA_DOC)
 
 deps:
 	#	Install package dependencies
-	Rscript -e 'if (!require("remotes")) {install.packages("remotes", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; remotes::install_deps("..", dependencies = TRUE, upgrade = FALSE, INSTALL_opts="--no-staged-install")'
+	Rscript -e 'if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes", repos = "${CRAN}", INSTALL_opts="--no-staged-install")}; remotes::install_deps("..", dependencies = TRUE, upgrade = FALSE, INSTALL_opts="--no-staged-install")'
 
 resave:
 	# Try to compress datasets beyond the default
-	Rscript -e 'if (require("tools")) tools::resaveRdaFiles(paths = "data")'
+	Rscript -e 'if (requireNamespace("tools", quietly = TRUE)) tools::resaveRdaFiles(paths = "data")'
 
 ../data/%.rda: ../data-raw/%.R
 	#	Build datasets
@@ -32,7 +32,7 @@ resave:
 
 $(DATA_DOC)&: $(DATA_RDA)
 	#	Generate documentation for the datasets (and package)
-	Rscript -e 'if (!require("roxygen2")) {install.packages("roxygen2", repos = "${CRAN}")}; roxygen2::roxygenize("..")'
+	Rscript -e 'if (!requireNamespace("roxygen2", quietly = TRUE)) {install.packages("roxygen2", repos = "${CRAN}")}; roxygen2::roxygenize("..")'
 
 clean:
 	#	Remove data files and associated man pages
