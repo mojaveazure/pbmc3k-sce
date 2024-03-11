@@ -1,17 +1,29 @@
-#' pbmc3k
+#' @import SingleCellExperiment
 #'
-#' @format A \sce object with the pbmc3k dataset
+NULL
+
+#' PBMC 3k
+#'
+#' @format A \sce object with the \code{pbmc3k.sce} dataset
 #'
 #' @source \url{https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k}
 #'
-"pbmc3k"
-
-#' pbmc3k.final
+#' @keywords datasets
 #'
-#' @format A \sce object with the pbmc3k.final dataset
+#' @family pbmc3ksce
+#'
+"pbmc3k.sce"
+
+#' PBMC 3k Final
+#'
+#' @format A \sce object with the \code{pbmc3k.sce.final} dataset
 #'
 #' @source \url{https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k}
 #' @source \url{https://satijalab.org/seurat/v3.0/pbmc3k_tutorial.html}
 #' @source \url{http://bioconductor.org/books/3.17/OSCA.intro/analysis-overview.html}
 #'
-"pbmc3k.final"
+#' @keywords datasets
+#'
+#' @family pbmc3ksce
+#'
+"pbmc3k.sce.final"
