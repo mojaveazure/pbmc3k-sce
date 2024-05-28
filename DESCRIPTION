@@ -1,6 +1,6 @@
 Package: pbmc3k.sce
 Title: PBMC 3k Dataset as a SingleCellExperiment
-Version: 0.0.0.9100
+Version: 0.0.0.9101
 Authors@R: c(
   person(
     given = "Paul",

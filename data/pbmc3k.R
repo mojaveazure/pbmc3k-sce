@@ -1,5 +1,5 @@
 
-pbmc3k.sce <- local({
+pbmc3k <- local({
   callcheck <- "resave_data_others" %in% unlist(x = lapply(
     X = sys.calls(),
     FUN = as.character
@@ -27,12 +27,12 @@ pbmc3k.sce <- local({
   untar(tarfile = file.path(tmp, basename(path = url)), exdir = tmp)
 
   # Create an SCE object from
-  pbmc3k.sce <- DropletUtils::read10xCounts(
+  pbmc3k <- DropletUtils::read10xCounts(
     samples = file.path(tmp, 'filtered_gene_bc_matrices', 'hg19'),
     sample.names = 'pbmc3k',
     col.names = TRUE
   )
 
   # Return
-  pbmc3k.sce
+  pbmc3k
 })

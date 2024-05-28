@@ -1,5 +1,5 @@
 
-pbmc3k.sce.final <- local({
+pbmc3k.final <- local({
   callcheck <- 'resave_data_others' %in% unlist(x = lapply(
     X = sys.calls(),
     FUN = as.character

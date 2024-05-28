@@ -12,7 +12,7 @@ NULL
 #'
 #' @family pbmc3ksce
 #'
-"pbmc3k.sce"
+"pbmc3k"
 
 #' PBMC 3k Final
 #'
@@ -26,4 +26,4 @@ NULL
 #'
 #' @family pbmc3ksce
 #'
-"pbmc3k.sce.final"
+"pbmc3k.final"
