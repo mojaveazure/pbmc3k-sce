@@ -33,6 +33,8 @@ pbmc3k <- local({
     col.names = TRUE
   )
 
+  SingleCellExperiment::mainExpName(x = pbmc3k) <- 'RNA'
+
   # Return
   pbmc3k
 })

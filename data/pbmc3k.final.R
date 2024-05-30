@@ -26,7 +26,7 @@ pbmc3k.final <- local({
   # Find the source file for the raw pbmc3k.sce
   src <- Filter(
     f = file.exists,
-    x = file.path(data.dir, paste('pbmc3k.sce', c('rda', 'R'), sep = '.'))
+    x = file.path(data.dir, paste('pbmc3k', c('rda', 'R'), sep = '.'))
   )
   if (!length(x = src)) {
     return(NULL)
@@ -43,17 +43,16 @@ pbmc3k.final <- local({
         return(invisible(x = NULL))
       }
       resave_data_others(srcfile = src, envir = env)
-      env$pbmc3k.sce
+      env$pbmc3k
     },
     rda = {
       load(file = src, envir = env, verbose = TRUE)
-      env$pbmc3k.sce
+      env$pbmc3k
     }
   )
 
   # If pbmc3k.sce was `NULL` for whatever reason, return `NULL`
   if (is.null(x = pbmc3k.final)) {
-    print("nope")
     return(NULL)
   }
 
