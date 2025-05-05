@@ -1,4 +1,5 @@
 #' @import SingleCellExperiment
+#' @import SummarizedExperiment
 #'
 NULL
 

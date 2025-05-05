@@ -1,6 +1,6 @@
 Package: pbmc3k.sce
 Title: PBMC 3k Dataset as a SingleCellExperiment
-Version: 0.0.0.9102
+Version: 0.0.0.9103
 Authors@R: c(
   person(
     given = "Paul",
@@ -12,19 +12,21 @@ Authors@R: c(
   )
 Description: The PBMC 3k dataset provided as a SingleCellExperiment object.
     Also includes a processed version, pbmc3k.sce.final, using Bioc-equivalents 
-    of the Seurat standard workflow
+    of the Seurat standard workflow.
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(rd_family_title = list(pbmc3ksce = ""))
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Remotes:
   bioc::release/SingleCellExperiment,
   bioc::release/scater,
   bioc::release/scran
 Depends:
     R (>= 2.10),
-    SingleCellExperiment (>= 1.20.0)
+    SingleCellExperiment (>= 1.20.0),
+    SummarizedExperiment (>= 1.38.0),
+    SummarizedExperiment (< 1.39.0),
 Suggests:
     bluster,
     DropletUtils,
